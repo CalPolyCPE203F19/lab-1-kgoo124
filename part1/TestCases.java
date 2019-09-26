@@ -9,6 +9,7 @@ import java.util.Map;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 import org.junit.Test;
 
@@ -31,8 +32,7 @@ public class TestCases
    @Test
    public void testSimpleIf3()
    {
-      fail("Missing SimpleIf3");
-      /* TO DO: Write one more valid test case. */
+    assertEquals(-2, SimpleIf.max(-2, -10), DELTA);
    }
 
    @Test
@@ -50,9 +50,7 @@ public class TestCases
    @Test
    public void testSimpleLoop3()
    {
-      fail("Missing SimpleLoop3");
-      /* TO DO: Write one more valid test case to make sure that
-         this function is not just returning 7. */
+    assertEquals(0, SimpleLoop.sum(-1, 1));
    }
 
    @Test
@@ -76,8 +74,8 @@ public class TestCases
    @Test
    public void testSimpleArray3()
    {
-      fail("Missing SimpleArray3");
-      /* TO DO: Add a new test case. */
+      assertArrayEquals(new int[] {16, 36},
+              SimpleArray.squareAll(new int[] {4, 6}));
    }
 
    @Test
@@ -94,8 +92,12 @@ public class TestCases
    @Test
    public void testSimpleList2()
    {
-      fail("Missing SimpleList2");
-      /* TO DO: Add a new test case. */
+      List<Integer> input =
+         new LinkedList<Integer>(Arrays.asList(new Integer[] {4, 6, -2}));
+      List<Integer> expected =
+         new ArrayList<Integer>(Arrays.asList(new Integer[] {16, 36, 4}));
+
+      assertEquals(expected, SimpleList.squareAll(input));
    }
 
    @Test
@@ -113,8 +115,7 @@ public class TestCases
    @Test
    public void testBetterLoop3()
    {
-      fail("Missing BetterLoop3");
-      /* TO DO: Write a valid test case where the expected result is false. */
+      assertFalse(BetterLoop.contains(new int[] {3, 1, 9, 2}, 5));
    }
 
    @Test
@@ -157,7 +158,36 @@ public class TestCases
    @Test
    public void testExampleMap2()
    {
-      fail("Missing ExampleMap2");
-      /* TO DO: Write another valid test case. */
+      List<String> expected = Arrays.asList("Nikki");
+      Map<String, List<Course>> courseListsByStudent = new HashMap<>();
+
+      courseListsByStudent.put("Sam",
+         Arrays.asList(
+            new Course("CPE 123", 4),
+            new Course("CPE 101", 2),
+            new Course("CPE 202", 2),
+            new Course("CPE 203", 4)));
+      courseListsByStudent.put("Chris",
+         Arrays.asList(
+            new Course("CPE 101", 4),
+            new Course("CPE 202", 4),
+            new Course("ES 141", 1)));
+      courseListsByStudent.put("Nikki",
+         Arrays.asList(
+            new Course("CPE 123", 4),
+            new Course("CPE 203", 1),
+            new Course("CPE 349", 2),
+            new Course("CPE 473", 3),
+            new Course("CPE 476", 4),
+            new Course("CPE 572", 4)));
+
+      /*
+       * Why compare HashSets here?  Just so that the order of the
+       * elements in the list is not important for this test.
+       */
+      assertEquals(new HashSet<>(expected),
+         new HashSet<>(ExampleMap.highEnrollmentStudents(
+            courseListsByStudent, 12)));
+
    }
 }
