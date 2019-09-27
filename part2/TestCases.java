@@ -43,6 +43,12 @@ public class TestCases
    {
        assertEquals(0.7853981, new Point(1, 1).getAngle(), DELTA);
    }
+   
+   @Test
+   public void testGetAngle2()
+   {
+       assertEquals(-1.030376, new Point(3, -5).getAngle(), DELTA);
+   }
 
    @Test
    public void testRotate90()

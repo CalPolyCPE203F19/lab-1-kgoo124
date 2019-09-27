@@ -13,6 +13,6 @@ public class Point
     public double getRadius(){
         return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
     }
-    public double getAngle(){return Math.atan(y/x);}
+    public double getAngle(){return Math.atan2(y,x);}
     public Point rotate90(){return new Point(-y, x);}
 }
